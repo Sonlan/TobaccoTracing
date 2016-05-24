@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.aiming.dao.UserMapper">
-   <resultMap type="org.aiming.entity.User" id="BaseResultMap">
+<mapper namespace="com.song.dao.StoreInfoMapper">
+   <resultMap type="com.song.entity.User" id="BaseResultMap">
      <id column="id" property="id" jdbcType="INTEGER"/>
-     <result column="level" property="level" jdbcType="TINYINT"/>
-     <result column="username" property="username" jdbcType="VARCHAR"/>
+     <result column="userName" property="userName" jdbcType="VARCHAR"/>
      <result column="password" property="password" jdbcType="VARCHAR"/>
-     <result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
-     <result column="update_time" property="update_time" jdbcType="TIMESTAMP"/>
+     <result column="permission" property="permission" jdbcType="INTEGER"/>
+     <result column="scopes" property="scopes" jdbcType="VARCHAR"/>
+     <result column="name" property="name" jdbcType="VARCHAR"/>
+     <result column="email" property="email" jdbcType="VARCHAR"/>
+     <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR"/>
+     <result column="remark" property="remark" jdbcType="VARCHAR"/>
    </resultMap>
 
-  <select id="getUserByName" parameterType="java.lang.String" resultType="org.aiming.entity.User">
-    SELECT * FROM user WHERE username = #{username}
+  <select id="getUserByName" parameterType="java.lang.String" resultType="com.song.entity.User">
+    SELECT * FROM administors WHERE userName = #{userName}
   </select>
   
   <select id="userExist" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-    SELECT * FROM user
+    SELECT * FROM administors
 	<where>
 		1=1
-		<if test="username != null and username != '' ">
-			<![CDATA[ AND username = #{username} ]]>
+		<if test="userName != null and userName != '' ">
+			<![CDATA[ AND userName = #{userName} ]]>
 		</if>
 		<if test="password != null and password != '' ">
 			<![CDATA[ AND password = #{password} ]]>
@@ -27,19 +30,19 @@
 	</where>
   </select>
   <select id="userRepeat" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-    SELECT * FROM user
+    SELECT * FROM administors
 	<where>
 		1=1
-		<if test="username != null and username != '' ">
-			<![CDATA[ AND username = #{username} ]]>
+		<if test="userName != null and userName != '' ">
+			<![CDATA[ AND userName = #{userName} ]]>
 		</if>
 	</where>
   </select>
   
   <insert id="insert" parameterType="java.util.HashMap">
         INSERT INTO user
-        (level,username,password) VALUES
-        (#{level},#{username},#{password})
+        (level,userName,password) VALUES
+        (#{level},#{userName},#{password})
    </insert>
   
 </mapper>

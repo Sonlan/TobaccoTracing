@@ -3,7 +3,7 @@ package com.song.entity;
  * 管理员数据库模型
  * 所有属性与数据库表项一一对应
  * */
-public class Users {
+public class User {
 	private int id;  
 	private String userName;  //登录用户名
 	private String password;  //密码

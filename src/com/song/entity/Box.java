@@ -1,6 +1,6 @@
 package com.song.entity;
 
-public class Boxes {
+public class Box {
 	private String boxID;  //箱体编号
 	private String logisticsId;//物流信息编号
 	private String pd;  //生产日期product date

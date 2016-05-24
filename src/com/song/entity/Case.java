@@ -3,7 +3,7 @@ package com.song.entity;
 /*
  * 盒体数据模型
  * */
-public class Cases {
+public class Case {
 	private String caseID;  //盒体编号
 	private String boxID;  //所属箱体编号
 	private String logisticsId;//物流信息编号

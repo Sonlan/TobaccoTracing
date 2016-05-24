@@ -1,6 +1,6 @@
 package com.song.entity;
 
-public class Logistics {
+public class Logistic {
 	private int id;  //条目编号
 	private String logisticsID;  //物流信息编号
 	private String address;  //地点

@@ -4,7 +4,7 @@ package com.song.entity;
  * @author songsong
  * 
  */
-public class Products {
+public class Product {
 	private String id;  //产品号
 	private String caseID;  //盒号
 	private String pd;  //生产日期product date

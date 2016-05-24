@@ -4,7 +4,7 @@ package com.song.entity;
  * @author songsong
  *根据region 和 pName以及type和Date唯一确定一条记录，关键信息为num销售额
  */
-public class Sales {
+public class Sale {
 	private int id;  //主键
 	private String region;  //地域
 	private String pName;  //产品名称
