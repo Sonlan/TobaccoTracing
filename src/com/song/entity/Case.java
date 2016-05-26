@@ -18,7 +18,7 @@ public class Case {
 	private String targetAddr;//目的销售地点
 	private String consumeAddr; //消费地点
 	private String consumeTime;//消费地点
-	
+	private String remark;// 备注
 	public String getConsumeAddr() {
 		return consumeAddr;
 	}
@@ -37,7 +37,7 @@ public class Case {
 	public void setTargetAddr(String targetAddr) {
 		this.targetAddr = targetAddr;
 	}
-	private String remark;// 备注
+	
 	public String getpName() {
 		return pName;
 	}

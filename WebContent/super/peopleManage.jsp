@@ -1,12 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<!-- <link href="css/style.css" rel="stylesheet" type="text/css" /> -->
-<link href="css/peopleManage.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/peopleManage.js"></script>
+<link href="${ctx}/super/css/peopleManage.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${ctx}/super/js/jquery.js"></script>
+<script type="text/javascript" src="${ctx}/super/js/peopleManage.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -39,7 +42,7 @@ $(document).ready(function(){
     <div class="tools">
     
     	<ul class="toolbar">
-        <li class="click"><span><img src="images/select.png" /></span>刷新</li>
+        <li class="click"><span><img src="${ctx}/super/images/select.png" /></span>刷新</li>
         <li><input id="permissionCheckbox" type="checkbox" />
         	<label>权限等级:&nbsp;</label><select id="permissionSelect">
 										  <option class="permissionOption">0 </option>
@@ -87,7 +90,7 @@ $(document).ready(function(){
     	<div class="tiptop"><span>提示信息</span><a></a></div>
         
       <div class="tipinfo">
-        <span><img src="images/ticon.png" /></span>
+        <span><img src="${ctx}/super/images/ticon.png" /></span>
         <div class="tipright">
         <p>提示信息</p>
         <cite>抱歉，没有查找到任何满足条件的数据</cite>

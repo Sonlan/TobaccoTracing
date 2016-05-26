@@ -13,8 +13,8 @@
      <result column="remark" property="remark" jdbcType="VARCHAR"/>
    </resultMap>
 
-    <delete id="deleteUserByName" parameterType="java.lang.String">
-  	delete from administrators where userName = #{userName}
+    <delete id="deleteUserById" parameterType="java.lang.String">
+  	delete from administrators where id = #{id}
   </delete>
   <update id="updateUser" parameterType="java.util.HashMap">
   	update administrators
@@ -56,20 +56,18 @@
 		</if>
 	</where>
   </select>
-  <select id="userRepeat" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  <select id="userRepeat" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT * FROM administrators
 	<where>
 		1=1
-		<if test="userName != null and userName != '' ">
-			<![CDATA[ AND userName = #{userName} ]]>
-		</if>
+		<![CDATA[ AND userName = #{userName} ]]>
 	</where>
   </select>
   
   <insert id="insert" parameterType="java.util.HashMap">
         INSERT INTO administrators
-        (level,userName,password) VALUES
-        (#{level},#{userName},#{password})
+        (userName,password,permission,scopes,name,email,phoneNumber,remark) VALUES
+        (#{user.userName},#{user.password},#{user.permission},#{user.scopes},#{user.name},#{user.email},#{user.phoneNumber},#{user.remark})
    </insert>
   
 </mapper>

@@ -1,48 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.song.dao.CaseMapper">
-   <resultMap type="com.song.entity.User" id="BaseResultMap">
-     <id column="id" property="id" jdbcType="INTEGER"/>
-     <result column="userName" property="userName" jdbcType="VARCHAR"/>
-     <result column="password" property="password" jdbcType="VARCHAR"/>
-     <result column="permission" property="permission" jdbcType="INTEGER"/>
-     <result column="scopes" property="scopes" jdbcType="VARCHAR"/>
-     <result column="name" property="name" jdbcType="VARCHAR"/>
-     <result column="email" property="email" jdbcType="VARCHAR"/>
-     <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR"/>
+   <resultMap type="com.song.entity.Case" id="BaseResultMap">
+     <id column="caseID" property="caseID" jdbcType="VARCHAR"/>
+     <result column="boxID" property="boxID" jdbcType="VARCHAR"/>
+     <result column="logisticsId" property="logisticsId" jdbcType="VARCHAR"/>
+     <result column="pd" property="pd" jdbcType="VARCHAR"/>
+     <result column="gp" property="gp" jdbcType="VARCHAR"/>
+     <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR"/>
+     <result column="pb" property="pb" jdbcType="VARCHAR"/>
+     <result column="pName" property="pName" jdbcType="VARCHAR"/>
+     <result column="amount" property="amount" jdbcType="INTEGER"/>
+     <result column="price" property="price" jdbcType="FLOAT"/>
+     <result column="state" property="state" jdbcType="VARCHAR"/>
+     <result column="targetAddr" property="targetAddr" jdbcType="VARCHAR"/>
+     <result column="consumeAddr" property="consumeAddr" jdbcType="VARCHAR"/>
+     <result column="consumeTime" property="consumeTime" jdbcType="VARCHAR"/>
      <result column="remark" property="remark" jdbcType="VARCHAR"/>
    </resultMap>
 
-  <select id="getUserByName" parameterType="java.lang.String" resultType="com.song.entity.User">
-    SELECT * FROM administors WHERE userName = #{userName}
+  <select id="query" parameterType="java.util.HashMap" resultType="com.song.entity.Case">
+    SELECT * FROM cases
+    <where>
+    	1=1
+    	<if test="id !=null and id!='' ">
+    		and caseID = #{id}
+    	</if>
+    </where>
   </select>
   
-  <select id="userExist" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-    SELECT * FROM administors
-	<where>
-		1=1
-		<if test="userName != null and userName != '' ">
-			<![CDATA[ AND userName = #{userName} ]]>
-		</if>
-		<if test="password != null and password != '' ">
-			<![CDATA[ AND password = #{password} ]]>
-		</if>
-	</where>
-  </select>
-  <select id="userRepeat" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-    SELECT * FROM administors
-	<where>
-		1=1
-		<if test="userName != null and userName != '' ">
-			<![CDATA[ AND userName = #{userName} ]]>
-		</if>
-	</where>
-  </select>
+  <update id="update" parameterType="java.util.HashMap">
+  	update cases
+  	set
+  	boxID = #{cases.boxID},
+  	logisticsId = #{cases.logisticsId},
+  	pd = #{cases.pd},
+  	gp = #{cases.gp},
+  	manufacturer = #{cases.manufacturer},
+  	pb = #{cases.pb},
+  	pName = #{cases.pName},
+  	amount = #{cases.amount},
+  	price = #{cases.price},
+  	state = #{cases.state},
+  	targetAddr = #{cases.targetAddr},
+  	consumeAddr = #{cases.consumeAddr},
+  	consumeTime = #{cases.consumeTime},
+  	remark = #{cases.remark}
+  	where caseID = #{cases.caseID}
+  </update>
   
-  <insert id="insert" parameterType="java.util.HashMap">
-        INSERT INTO user
-        (level,userName,password) VALUES
-        (#{level},#{userName},#{password})
+  <insert id="add" parameterType="java.util.HashMap">
+        INSERT INTO cases
+        (caseID,boxID,logisticsId,pd,gp,manufacturer,pb,pName,amount,price,state,targetAddr,consumeAddr,consumeTime,remark) VALUES
+        (#{cases.caseID},#{cases.boxID},#{cases.logisticsId},#{cases.pd},#{cases.gp},#{cases.manufacturer},#{cases.pb},#{cases.pName},#{cases.amount},#{cases.price},#{cases.state},#{cases.targetAddr},#{cases.consumeAddr},#{cases.consumeTime},#{cases.remark})
    </insert>
-  
+  <delete id="delete" parameterType="java.lang.String">
+  	delete from cases where caseID = #{id}
+  </delete>
 </mapper>

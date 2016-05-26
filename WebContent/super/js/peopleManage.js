@@ -138,7 +138,7 @@ $(document).ready(function(){
 		$.post("../user/query","permission="+permission+"&scopes="+scopes,function(data,stadus){
 			var headHtml = "<tr>"+
 	        "<th><input name='' type='checkbox' value='' checked='checked'/></th>"+
-	        "<th>ID<i class='sort'><img src='images/px.gif' /></i></th>"+
+	        "<th>ID</th>"+
 	        "<th>用户名</th>"+
 	        "<th>责任人姓名</th>"+
 	        "<th>权限等级</th>"+
@@ -172,7 +172,7 @@ $(document).ready(function(){
 								       "<td>"+data.parameter[i].name+"</td>"+
 								       "<td>"+data.parameter[i].permission+"</td>"+
 								       "<td>"+data.parameter[i].scopes+"</td>"+
-								       "<td><a href='personalInfo.html?id="+data.parameter[i].id+"' class='tablelink' target='_blank'>查看</a>     <a href='../manage/delete?id="+data.parameter[i].id+"&type=administrators' class='tablelink' onclick='if(confirm(\"你确定要删除这些数据?\")) return ture;else return false;'>删除</a></td>"+
+								       "<td><a href='personalInfo.html?id="+data.parameter[i].id+"' class='tablelink' target='_blank'>查看</a>     <a href='../user/delete?id="+data.parameter[i].id+"&type=administrators' class='tablelink' onclick='if(confirm(\"你确定要删除这些数据?\")) return ture;else return false;'>删除</a></td>"+
 								       "</tr>";
 				}
 				$(".pagin").attr("style","display:block");

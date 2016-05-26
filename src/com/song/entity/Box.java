@@ -15,7 +15,7 @@ public class Box {
 	private String targetAddr;//目的销售地点
 	private String consumeAddr; //消费地点
 	private String consumeTime;//消费地点
-	
+	private String remark; //备注
 	public String getConsumeAddr() {
 		return consumeAddr;
 	}
@@ -34,7 +34,7 @@ public class Box {
 	public void setTargetAddr(String targetAddr) {
 		this.targetAddr = targetAddr;
 	}
-	private String remark; //备注
+	
 	public String getGp() {
 		return gp;
 	}

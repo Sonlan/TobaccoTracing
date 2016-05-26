@@ -31,7 +31,7 @@ public class SysController {
 			response.getWriter().write(JsonUtils.statusResponse(1,"toMain"));
 		}else{
 			if(userService.userExist(userName, password)){
-				User user = userService.userQuery(userName).get(0);
+				User user = userService.userQuery(userName);
 				request.getSession().setAttribute("_LOGIN", "OK");
 			    request.getSession().setAttribute("_USERNAME", userName);
 			    Cookie cookie = new Cookie("_PERMISSION", user.getPermission()+"");
@@ -46,6 +46,18 @@ public class SysController {
 	}
 	@RequestMapping(value="toMain")
 	public String toMain(){
-		return "main";
+		return "main.html";
+	}
+	/**
+	 * 系统登出
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="/logout")
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		request.getSession().invalidate();
+		String PATH = request.getScheme() + "://"
+				+ request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath() + "/";
+		response.sendRedirect(PATH);
 	}
 }

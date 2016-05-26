@@ -270,7 +270,7 @@ $(document).ready(function(){
 				if(type=="boxID"){id=datas.parameter[i].boxID;}
 				else if(type=="caseID"){id=datas.parameter[i].caseID;}
 				else if(type=="productID"){id=datas.parameter[i].id;}
-				$.post("../manage/delete","id="+id+"&type="+type,function(data,status){
+				$.post("../product/delete","id="+id+"&type="+type,function(data,status){
 					//删除这一行
 					$("tr[id='"+i+"']").remove();
 				},"json");		
@@ -378,16 +378,13 @@ $(document).ready(function(){
 			alert(sendData);
 			if(sendData!=""){//addNew用于区别update和add动作
 				$.post("../product/update",sendData+"&addNew="+addNew,function(data,stadus){
-					if(data.statuscode==0){//有错误
-						alert("修改失败，请检查数据输入");
-					}
-					else if(data.statuscode==1){
+					if(data.statuscode==0){
 						alert("修改成功");
 						$(".click").click();//刷新数据
 						$(".cancelEdit").click();  //关闭该栏
 					}
 					else{
-						alert("未知错误，请稍候重试");
+						alert(data.parameter);
 					}
 				},"json");
 			}

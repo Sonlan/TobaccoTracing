@@ -5,7 +5,7 @@ import java.util.List;
 import com.song.entity.User;
 
 public interface UserService {
-	List<User> userQuery(String username);
+	User userQuery(String username);
 	/**
 	 * 用户信息查询
 	 * @return 用户
@@ -24,10 +24,10 @@ public interface UserService {
 	int userAdd(User user);
 	/**
 	 * 用户删除
-	 * @param userName
+	 * @param id
 	 * @return 操作状态码
 	 */
-	int userDelete(String userName);
+	int userDelete(String id);
 	
 	boolean userExist(String userName,String password);
 }

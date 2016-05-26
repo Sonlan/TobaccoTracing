@@ -7,7 +7,7 @@ import com.song.entity.User;
 
 public interface UserMapper {
 	List<User> getUsers(Map<Object, Object> map);
-    void deleteUserByName(String username);
+    void deleteUserById(String id);
     /**
      * 根据用户名及密码判断是否存在此用户
      * @param map
@@ -24,8 +24,8 @@ public interface UserMapper {
 	 * @param map
 	 * @return
 	 */
-	User userRepeat(Map<Object, Object> map);
-	List<User> getUserByName1(Map<Object, Object> map);
+	User userRepeat(String userName);
+	User getUserByName(Map<Object, Object> map);
 	
 	void updateUser(Map<Object, Object> map);
 }
