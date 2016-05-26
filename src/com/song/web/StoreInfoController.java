@@ -2,6 +2,7 @@ package com.song.web;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,25 @@ public class StoreInfoController {
 			if(type.equals("selStoreIds")) response.getWriter().write(JsonUtils.statusResponse(1, storeInfoService.queryByWHid(id)));
 			else if(type.equals("selInDates")) response.getWriter().write(JsonUtils.statusResponse(1, storeInfoService.queryByInDate(id)));
 		}else response.getWriter().write(JsonUtils.statusResponse(1,"系统异常"));
+	}
+	
+	/**
+	 * 物流信息新增
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/add")
+	public void add(HttpServletRequest request,HttpServletResponse response){
+		
+	}
+	
+	/**
+	 * 物流信息删除
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/delete")
+	public void delete(HttpServletRequest request,HttpServletResponse response){
+		
 	}
 }

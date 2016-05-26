@@ -10,5 +10,8 @@ public interface StoreInfoService {
 	List<StoreInfo> queryByWHid(String whid);
 
 	List<StoreInfo> queryByInDate(String storeID);
-
+	
+	boolean add(StoreInfo storeInfo);
+	
+	boolean delete(String whid);
 }

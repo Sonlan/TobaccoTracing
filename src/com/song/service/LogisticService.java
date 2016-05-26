@@ -11,5 +11,9 @@ public interface LogisticService {
 	List<Logistic> queryByLid(String lid, String remark);
 
 	List<Logistic> queryByLid1(String lid, String caseID, String pid);
+	
+	boolean add(Logistic logistic);
+	
+	boolean delete(String id);
 
 }

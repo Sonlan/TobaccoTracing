@@ -11,4 +11,8 @@ public interface StoreInfoMapper {
 
 	List<StoreInfo> queryByWHid(Map<Object, Object> map);
 
+	void add(Map<Object, Object> map);
+
+	void delete(String whid);
+
 }

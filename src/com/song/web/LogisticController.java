@@ -3,6 +3,7 @@ package com.song.web;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +87,24 @@ public class LogisticController {
 				else	response.getWriter().write(JsonUtils.statusResponse(1,logisticService.queryByLid(id, "")));
 			}
 		}else response.getWriter().write(JsonUtils.statusResponse(1,"系统异常"));
+	}
+	/**
+	 * 物流信息新增
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/add")
+	public void add(HttpServletRequest request,HttpServletResponse response){
+		
+	}
+	
+	/**
+	 * 物流信息删除
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/delete")
+	public void delete(HttpServletRequest request,HttpServletResponse response){
+		
 	}
 }

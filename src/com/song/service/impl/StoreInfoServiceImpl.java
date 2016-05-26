@@ -36,4 +36,26 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 		}
 	}
 
+	@Override
+	public boolean add(StoreInfo storeInfo) {
+		try {
+			Map<Object, Object> map = new HashMap<>();
+			map.put("storeInfo", storeInfo);
+			storeinfoDao.add(map);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean delete(String whid) {
+		try {
+			storeinfoDao.delete(whid);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 }

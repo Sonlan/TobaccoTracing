@@ -9,5 +9,8 @@ public interface SaleService {
 	List<Sale> queryBypName(String pName);
 
 	List<Sale> queryByRegion(String region);
-
+	
+	boolean add(Sale sale);
+	
+	boolean delete(String id);
 }

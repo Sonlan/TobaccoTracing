@@ -11,4 +11,8 @@ public interface SaleMapper {
 
 	List<Sale> queryByRegion(Map<Object, Object> map);
 
+	void add(Map<Object, Object> map);
+
+	void delete(String id);
+
 }

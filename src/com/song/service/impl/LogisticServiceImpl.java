@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.FastArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,26 @@ public class LogisticServiceImpl implements LogisticService {
 			return logisticDao.queryById(map);
 		} catch (Exception e) {
 			return null;
+		}
+	}
+	@Override
+	public boolean add(Logistic logistic) {
+		try {
+			Map<Object, Object> map = new HashMap<>();
+			map.put("logistic", logistic);
+			logisticDao.add(map);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	@Override
+	public boolean delete(String id) {
+		try {
+			logisticDao.delete(id);
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 
