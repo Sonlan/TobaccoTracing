@@ -7,10 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/storeInfo.css" rel="stylesheet" type="text/css" />
+<!-- <link href="css/style.css" rel="stylesheet" type="text/css" /> -->
+<link href="css/logisticsInfo.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/storeInfo.js"></script>
-<script type="text/javascript" src="../jquery/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/logisticsInfo.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -45,10 +45,10 @@ $(document).ready(function(){
     	<ul class="toolbar">
     	<li class="addItems"><span><img src="images/addItems.png" /></span>添加</li>
         <li class="click"><span><img src="images/select.png" /></span>刷新</li>
-        <li><input id="inDatesCheckbox" type="checkbox"  />
-        	<label>仓储信息编号:&nbsp;&nbsp;</label><input id="selInDates" type="text" style="height:75%;"/></li>
-        <li><input id="storeIdsCheckbox" type="checkbox" />
-        	<label>仓库编号:&nbsp;&nbsp;</label><input id="selStoreIds" type="text" style="height:75%;"/></li>												
+        <li><input id="idCheckbox" type="checkbox" />
+        	<label>条目编号:&nbsp;&nbsp;</label><input id="id" type="text" style="height:75%;"/></li>
+        <li><input id="lidCheckbox" type="checkbox"  />
+        	<label>物流信息编号:&nbsp;&nbsp;</label><input id="lid" type="text" style="height:75%;"/></li>												
         </ul>
         
     
@@ -72,43 +72,33 @@ $(document).ready(function(){
     </div>
     <!-- 编辑和新增条目表，初始均为隐藏状态 -->
     <!-- box表 -->
-    <div id="editStoreInfo" >
+    <div id="editLogistics">
     	<p><center style="font-weight:900;font-size:20px;">在下表中编辑数据</center></p>
     	<table class="tablelist">
-	    		<tr class="proTitle">
+	    	<thead>
+	    		<tr>
 				    <th><input name='' type='checkbox' value='' checked='checked'/></th>
-				    <th>仓库编号<i class='sort'><img src='images/px.gif' /></i></th>
-				    <th>ID</th>
-				    <th >入库时间</th>
-				    <th >出库时间</th>
-				    <th>产品生产批号</th>
-				    <th>仓库地址</th>
-				    <th>是否为空</th>
+				    <th>ID<i class='sort'><img src='images/px.gif' /></i></th>
+				    <th>物流信息编号</th>
+				    <th>地点</th>
+				    <th>时间</th>
+				    <th>状态</th>
 				    <th>备注</th>
 				    <th>操作</th>
 				</tr>
-				<tr class="proValue">
+	        </thead>
+	        <tbody >
+				<tr>
 				   <td><input name='' type='checkbox' value='' /></td>
-			       <td><textarea id="editWarehouseIDs" readonly="readonly"></textarea></td>
-			       <td><textarea id="editstoreIDs"></textarea></td>
-			       <!-- <td><textarea id="editInDates"></textarea></td>
-			       <td><textarea id="editOutDates"></textarea></td> -->
-			       <td> 
-		                <input id="editInDates" type="text" class="Wdate" 
-		                onFocus="var overTime=$dp.$('editOutDates');WdatePicker({readOnly:'true',maxDate:'#F{$dp.$D(\'editOutDates\')}'})"
-		                />
-              	   </td>
-                	<td> 
-		                <input id="editOutDates" type="text" class="Wdate" 
-		                onFocus="WdatePicker({readOnly:'true',minDate:'#F{$dp.$D(\'editInDates\')}'})"
-		                />
-               	  </td>
-			       <td><textarea id="editPbs"></textarea></td>
-			       <td><textarea id="editLocations"></textarea></td>
-			       <td><textarea id="editStates"></textarea></td>
-			       <td><textarea id="editRemarks"></textarea></td>     
+			       <td><textarea id="editIdl" readonly="readonly"></textarea></td>
+			       <td><textarea id="editLogisticsIDl"></textarea></td>
+			       <td><textarea id="editAddressl"></textarea></td>
+			       <td><textarea id="editTimel"></textarea></td>
+			       <td><textarea id="editStatel"></textarea></td>
+			       <td><textarea id="editRemarkl"></textarea></td>     
 			       <td><a href='#' class='saveEdit'>保存</a>       <a href='#' class='cancelEdit'>取消</a></td>
 			    </tr>      	
+	        </tbody> 
     	</table> 
     </div>
     

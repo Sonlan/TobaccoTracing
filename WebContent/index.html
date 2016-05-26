@@ -53,13 +53,12 @@
 			else{
 				var datas = "username="+$("#username").val()+"&password="+$("#password").val();
 				$.post("login",datas,function(data,status){
-					if(data.statuscode==1)
+					if(data.statuscode==0)
 					{
 						window.location.replace(data.parameter);
 					}
-					else if(data.statuscode==0)
-						alert("用户不存在或密码错误!");
-					else alert("unknown error");
+					else
+						alert(data.parameter);
 				},"json");
 			}
 				
@@ -71,13 +70,12 @@
 	function AnonymouseLogin(){
 		var datas = "username=username&password=password";
 		$.post("login",datas,function(data,status){
-			if(data.statuscode==1)
+			if(data.statuscode==0)
 			{
 				window.location.replace(data.parameter);
 			}
-			else if(data.statuscode==0)
+			else
 				alert(data.parameter);
-			else alert("unknown error");
 		},"json");
 	}
 	</script>

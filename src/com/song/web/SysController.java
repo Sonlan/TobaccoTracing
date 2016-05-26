@@ -1,6 +1,9 @@
 package com.song.web;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.song.DBUtils.JsonUtils;
 import com.song.entity.User;
@@ -28,7 +32,7 @@ public class SysController {
 		    cookie.setMaxAge(60 * 60);//必须设置时间，否则只在当前页面有效
 		    response.addCookie(cookie);
 		    request.getSession().setAttribute("_LOGIN", "OK");
-			response.getWriter().write(JsonUtils.statusResponse(1,"toMain"));
+			response.getWriter().write(JsonUtils.statusResponse(0,"toMain"));
 		}else{
 			if(userService.userExist(userName, password)){
 				User user = userService.userQuery(userName);
@@ -38,9 +42,9 @@ public class SysController {
 			    cookie.setPath("/");
 			    cookie.setMaxAge(60 * 60);//必须设置时间，否则只在当前页面有效
 			    response.addCookie(cookie);
-				response.getWriter().write(JsonUtils.statusResponse(1,"toMain"));
+				response.getWriter().write(JsonUtils.statusResponse(0,"toMain"));
 			}else{
-				response.getWriter().write(JsonUtils.statusResponse(0,"用户不存在"));
+				response.getWriter().write(JsonUtils.statusResponse(1,"用户不存在"));
 			}
 		}
 	}
@@ -59,5 +63,18 @@ public class SysController {
 				+ request.getServerName() + ":" + request.getServerPort()
 				+ request.getContextPath() + "/";
 		response.sendRedirect(PATH);
+	}
+	
+	@RequestMapping(value="/manage/configInit")
+	public void configInit(@RequestParam String cmd,HttpServletResponse response) throws UnsupportedEncodingException, IOException{
+		Properties prop=new Properties();         
+		prop.load(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("select.properties"), "UTF-8"));  
+		String proTypes = prop.getProperty("proTypes");
+		String regions = prop.getProperty("regions");
+		if(null!=cmd){
+			if("proType".equals(cmd)){
+				response.getWriter().write(JsonUtils.statusResponse(0, proTypes+"&"+regions));
+			}
+		}else response.getWriter().write(JsonUtils.statusResponse(1, "ERROR"));
 	}
 }

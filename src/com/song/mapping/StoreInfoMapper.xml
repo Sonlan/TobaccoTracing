@@ -1,48 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.song.dao.StoreInfoMapper">
-   <resultMap type="com.song.entity.User" id="BaseResultMap">
-     <id column="id" property="id" jdbcType="INTEGER"/>
-     <result column="userName" property="userName" jdbcType="VARCHAR"/>
-     <result column="password" property="password" jdbcType="VARCHAR"/>
-     <result column="permission" property="permission" jdbcType="INTEGER"/>
-     <result column="scopes" property="scopes" jdbcType="VARCHAR"/>
-     <result column="name" property="name" jdbcType="VARCHAR"/>
-     <result column="email" property="email" jdbcType="VARCHAR"/>
-     <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR"/>
-     <result column="remark" property="remark" jdbcType="VARCHAR"/>
+   <resultMap type="com.song.entity.StoreInfo" id="BaseResultMap">
+     <id column="storeID" property="id" jdbcType="VARCHAR"/>
+     <result column="warehouseID" property="userName" jdbcType="VARCHAR"/>
+     <result column="inDate" property="password" jdbcType="VARCHAR"/>
+     <result column="outDate" property="permission" jdbcType="VARCHAR"/>
+     <result column="pb" property="scopes" jdbcType="VARCHAR"/>
+     <result column="location" property="name" jdbcType="VARCHAR"/>
+     <result column="state" property="email" jdbcType="VARCHAR"/>
+     <result column="remark" property="phoneNumber" jdbcType="VARCHAR"/>
    </resultMap>
 
-  <select id="getUserByName" parameterType="java.lang.String" resultType="com.song.entity.User">
-    SELECT * FROM administors WHERE userName = #{userName}
+  <select id="queryByWHid" parameterType="java.util.HashMap" resultType="com.song.entity.StoreInfo">
+    SELECT * FROM storeinfo 
+    <where>
+    	1=1
+    	<if test="warehouseID!=null and warehouseID!=''">
+    	and warehouseID = #{warehouseID}
+    	</if>
+    </where>
   </select>
-  
-  <select id="userExist" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-    SELECT * FROM administors
-	<where>
-		1=1
-		<if test="userName != null and userName != '' ">
-			<![CDATA[ AND userName = #{userName} ]]>
-		</if>
-		<if test="password != null and password != '' ">
-			<![CDATA[ AND password = #{password} ]]>
-		</if>
-	</where>
+  <select id="queryBySid" parameterType="java.util.HashMap" resultType="com.song.entity.StoreInfo">
+    SELECT * FROM storeinfo 
+    <where>
+    	1=1
+    	<if test="storeID!=null and storeID!=''">
+    	and storeID = #{storeID}
+    	</if>
+    </where>
   </select>
-  <select id="userRepeat" parameterType="java.util.HashMap" resultMap="BaseResultMap">
-    SELECT * FROM administors
-	<where>
-		1=1
-		<if test="userName != null and userName != '' ">
-			<![CDATA[ AND userName = #{userName} ]]>
-		</if>
-	</where>
-  </select>
-  
-  <insert id="insert" parameterType="java.util.HashMap">
-        INSERT INTO user
-        (level,userName,password) VALUES
-        (#{level},#{userName},#{password})
-   </insert>
   
 </mapper>
