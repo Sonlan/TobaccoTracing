@@ -9,10 +9,8 @@ $(document).ready(function(){
 		id = $("#ids").val();
 		var key = id.toUpperCase().substring(0,1); //截取首字符
 		var html = "";
-		$.post("../manage/antiFake","id="+id,function(data,status){
-			if(data.statuscode==0){//有误
-				alert(data.parameter);  //警示，重新输入查询码
-			}else if(data.statuscode==1){//正常
+		$.post("../product/antiFake","id="+id,function(data,status){
+			if(data.statuscode==0){//正常
 				if(data.parameter==null){//无数据
 					$(".result").attr("style","display:none");
 					$(".noData").attr("style","display:block");
@@ -42,6 +40,8 @@ $(document).ready(function(){
 					$("#InfoTable").html(html);
 					$(".result").attr("style","display:block");
 				}
+			}else{//有误
+				alert(data.parameter);  //警示，重新输入查询码
 			}
 		},"json");
 	});

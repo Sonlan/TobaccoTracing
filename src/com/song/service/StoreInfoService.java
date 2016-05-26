@@ -14,4 +14,6 @@ public interface StoreInfoService {
 	boolean add(StoreInfo storeInfo);
 	
 	boolean delete(String whid);
+
+	boolean update(StoreInfo storeinfo);
 }

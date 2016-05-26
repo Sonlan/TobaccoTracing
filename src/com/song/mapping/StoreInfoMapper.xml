@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.song.dao.StoreInfoMapper">
    <resultMap type="com.song.entity.StoreInfo" id="BaseResultMap">
-     <id column="storeID" property="id" jdbcType="VARCHAR"/>
-     <result column="warehouseID" property="userName" jdbcType="VARCHAR"/>
-     <result column="inDate" property="password" jdbcType="VARCHAR"/>
-     <result column="outDate" property="permission" jdbcType="VARCHAR"/>
-     <result column="pb" property="scopes" jdbcType="VARCHAR"/>
-     <result column="location" property="name" jdbcType="VARCHAR"/>
-     <result column="state" property="email" jdbcType="VARCHAR"/>
-     <result column="remark" property="phoneNumber" jdbcType="VARCHAR"/>
+     <id column="warehouseID" property="warehouseID" jdbcType="VARCHAR"/>
+     <result column="storeID" property="storeID" jdbcType="VARCHAR"/>
+     <result column="inDate" property="inDate" jdbcType="VARCHAR"/>
+     <result column="outDate" property="outDate" jdbcType="VARCHAR"/>
+     <result column="pb" property="pb" jdbcType="VARCHAR"/>
+     <result column="location" property="location" jdbcType="VARCHAR"/>
+     <result column="state" property="state" jdbcType="VARCHAR"/>
+     <result column="remark" property="remark" jdbcType="VARCHAR"/>
    </resultMap>
 
   <select id="queryByWHid" parameterType="java.util.HashMap" resultType="com.song.entity.StoreInfo">
@@ -31,4 +31,24 @@
     </where>
   </select>
   
+  <insert id="add" parameterType="java.util.HashMap">
+  	insert into storeinfo
+  	(storeID,warehouseID,inDate,outDate,pb,location,state,remark) values
+  	(#{storeInfo.storeID},#{storeInfo.warehouseID},#{storeInfo.inDate},#{storeInfo.outDate},#{storeInfo.pb},#{storeInfo.location},#{storeInfo.state},#{storeInfo.remark})
+  </insert>
+   <update id="update" parameterType="java.util.HashMap">
+   	update storeinfo
+   	set
+   	storeID = #{storeInfo.storeID},
+   	inDate = #{storeInfo.inDate},
+   	outDate = #{storeInfo.outDate},
+   	pb = #{storeInfo.pb},
+   	location = #{storeInfo.location},
+   	state = #{storeInfo.state},
+   	remark = #{storeInfo.remark}
+   	where warehouseID = #{storeInfo.warehouseID}
+   </update>
+  <delete id="delete" parameterType="java.lang.String">
+  	delete from storeinfo where warehouseID = #{warehouseID}
+  </delete>
 </mapper>

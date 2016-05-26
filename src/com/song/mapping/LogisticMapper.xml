@@ -5,6 +5,7 @@
      <id column="id" property="id" jdbcType="INTEGER"/>
      <result column="logisticsID" property="logisticsID" jdbcType="VARCHAR"/>
      <result column="time" property="time" jdbcType="VARCHAR"/>
+     <result column="address" property="address" jdbcType="VARCHAR"/>
      <result column="state" property="state" jdbcType="VARCHAR"/>
      <result column="remark" property="remark" jdbcType="VARCHAR"/>
    </resultMap>
@@ -33,10 +34,23 @@
   <select id="queryByLid1" parameterType="java.util.HashMap" resultType="com.song.entity.Logistic">
     SELECT * FROM logistics where logisticsID = #{logisticsID} and (remark = #{remark} or remark = #{remark1})
   </select>
-  <insert id="insert" parameterType="java.util.HashMap">
-        INSERT INTO user
-        (level,userName,password) VALUES
-        (#{level},#{userName},#{password})
+  <insert id="add" parameterType="java.util.HashMap">
+        INSERT INTO logistics
+        (logisticsID,time,address,state,remark) VALUES
+        (#{logistic.logisticsID},#{logistic.time},,#{logistic.address},#{logistic.state},#{logistic.remark})
    </insert>
+   <update id="update" parameterType="java.util.HashMap">
+   	update logistics
+   	set
+   	logisticsID = #{logistic.logisticsID},
+   	time = #{logistic.time},
+   	address = #{logistic.address},
+   	state = #{logistic.state},
+   	remark = #{logistic.remark}
+   	where id = #{logistic.id}
+   </update>
+   <delete id="delete" parameterType="java.lang.String">
+   	delete from logistics where id = #{id}
+   </delete>
   
 </mapper>

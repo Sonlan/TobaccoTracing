@@ -58,4 +58,16 @@ public class StoreInfoServiceImpl implements StoreInfoService {
 		}
 	}
 
+	@Override
+	public boolean update(StoreInfo storeInfo) {
+		try {
+			Map<Object, Object> map = new HashMap<>();
+			map.put("storeInfo", storeInfo);
+			storeinfoDao.update(map);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 }

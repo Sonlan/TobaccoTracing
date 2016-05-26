@@ -77,4 +77,5 @@ public class SysController {
 			}
 		}else response.getWriter().write(JsonUtils.statusResponse(1, "ERROR"));
 	}
+	
 }

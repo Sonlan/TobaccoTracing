@@ -16,4 +16,6 @@ public interface LogisticService {
 	
 	boolean delete(String id);
 
+	boolean update(Logistic logistic);
+
 }

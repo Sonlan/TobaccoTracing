@@ -58,4 +58,28 @@ public class SaleServiceImpl implements SaleService {
 		}
 	}
 
+	@Override
+	public boolean update(Sale sale) {
+		try {
+			Map<Object, Object> map = new HashMap<>();
+			map.put("sale", sale);
+			saleDao.update(map);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public List<Sale> query(String region, String pName) {
+		try {
+			Map<Object, Object> map = new HashMap<>();
+			map.put("region", region);
+			map.put("pName", pName);
+			return saleDao.query(map);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

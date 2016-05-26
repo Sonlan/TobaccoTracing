@@ -13,4 +13,8 @@ public interface SaleService {
 	boolean add(Sale sale);
 	
 	boolean delete(String id);
+
+	boolean update(Sale sale);
+
+	List<Sale> query(String region, String pName);
 }

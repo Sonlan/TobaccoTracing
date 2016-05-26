@@ -151,7 +151,7 @@ $(document).ready(function(){
 			var type = data.split("=")[2];
 			var i = data.split("&")[0].split("=")[1];
 			if(datas!=null){
-				$.post("../manage/delete","id="+datas.parameter[i].warehouseID+"&type="+type,function(data,status){
+				$.post("../storeInfo/delete","id="+datas.parameter[i].warehouseID,function(data,status){
 					//删除这一行
 					$("tr[id='"+i+"']").remove();
 				},"json");		
@@ -190,16 +190,13 @@ $(document).ready(function(){
 	
 			if(sendData!=""){//addNew用于区别update和add动作
 				$.post("../storeInfo/update",sendData+"&addNew="+addNew,function(data,stadus){
-					if(data.statuscode==0){//有错误
-						alert("修改失败，请检查数据输入");
-					}
-					else if(data.statuscode==1){
+					if(data.statuscode==0){
 						alert("修改成功");
 						$(".click").click();//刷新数据
 						$(".cancelEdit").click();  //关闭该栏
 					}
 					else{
-						alert("未知错误，请稍候重试");
+						alert(data.parameter);
 					}
 				},"json");
 			}

@@ -68,5 +68,16 @@ public class LogisticServiceImpl implements LogisticService {
 			return false;
 		}
 	}
+	@Override
+	public boolean update(Logistic logistic) {
+		try {
+			Map<Object, Object> map = new HashMap<>();
+			map.put("logistic", logistic);
+			logisticDao.update(map);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }

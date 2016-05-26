@@ -60,7 +60,7 @@ $(document).ready(function(){
 			 }else region="";
 		 }else region="";
 		 if(region!="" || type!=""){  //一项非空则开启查询
-			 $.post("../manage/dataAnalysis","type="+type+"&region="+region,function(data,stadus){
+			 $.post("../salesInfo/dataAnalysis","type="+type+"&region="+region,function(data,stadus){
 				 if(type!=""){
 					 if(region!=""){
 						 var i =0;

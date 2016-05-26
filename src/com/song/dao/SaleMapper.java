@@ -15,4 +15,8 @@ public interface SaleMapper {
 
 	void delete(String id);
 
+	void update(Map<Object, Object> map);
+
+	List<Sale> query(Map<Object, Object> map);
+
 }

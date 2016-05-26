@@ -15,4 +15,6 @@ public interface StoreInfoMapper {
 
 	void delete(String whid);
 
+	void update(Map<Object, Object> map);
+
 }

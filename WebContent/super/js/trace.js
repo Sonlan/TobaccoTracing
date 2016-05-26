@@ -6,16 +6,16 @@ $(document).ready(function(){
 	$("#query").click(function(){
 		id = $("#ids").val();
 		if(id!=""){//输入不为空
-			$.post("../manage/antiFake","id="+id,function(data,stadus){
-				if(data.statuscode==0){//有误
-					alert(data.parameter);  //警示，重新输入查询码
-				}else if(data.statuscode==1){//正常
+			$.post("../product/antiFake","id="+id,function(data,stadus){
+				if(data.statuscode==0){//正常
 					if(data.parameter!=null){//查询到数据
 						lid=data.parameter.logisticsId+"_"+id;  //将产品ID作为附加信息用于区分物流信息
 						updateTable(0);  //查询物流信息
 					}else{
 						alert("暂无物流信息，请稍后查询");
 					}
+				}else{
+					alert(data.parameter);  //警示，重新输入查询码
 				}
 			},"json");
 		}else{

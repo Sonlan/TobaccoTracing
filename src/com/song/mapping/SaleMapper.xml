@@ -27,11 +27,34 @@
     	</if>
     </where>
   </select>
+  <select id="query" parameterType="java.util.HashMap" resultType="com.song.entity.Sale">
+    SELECT * FROM sales
+    <where>
+    	1=1
+    	<if test="region!=null and region!=''">
+    	and region = #{region}
+    	</if>
+    	<if test="pName!=null and pName!=''">
+    	and pName = #{pName}
+    	</if>
+    </where>
+  </select>
   
-  <insert id="insert" parameterType="java.util.HashMap">
-        INSERT INTO user
-        (level,userName,password) VALUES
-        (#{level},#{userName},#{password})
+  <insert id="add" parameterType="java.util.HashMap">
+        INSERT INTO sales
+        (region,pName,time,num) VALUES
+        (#{sale.region},#{sale.pName},#{sale.time},#{sale.num})
    </insert>
-  
+  <update id="update" parameterType="java.util.HashMap">
+   	update sales
+   	set
+   	region = #{sale.region},
+   	pName = #{sale.pName},
+   	time = #{sale.time},
+   	num = #{sale.num}
+   	where id = #{sale.id}
+   </update>
+  <delete id="delete" parameterType="java.lang.String">
+  	delete from sales where id = #{id}
+  </delete>
 </mapper>

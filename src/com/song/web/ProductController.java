@@ -1,6 +1,9 @@
 package com.song.web;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -211,6 +214,25 @@ public class ProductController {
 			}
 		}else{
 			response.getWriter().write(JsonUtils.statusResponse(1, "系统异常"));
+		}
+	}
+	/**
+	 * 防伪查询
+	 * @param id
+	 * @param response
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="antiFake")
+	public void antiFake(@RequestParam String id,HttpServletResponse response) throws IOException{
+		if(id!=null){
+			String key = id.trim().toUpperCase().substring(0, 1);  //截取首字符
+			if(key.equals("P")){//产品
+				response.getWriter().write(JsonUtils.statusResponse(0,productService.productQuery(id).get(0)));
+			}else if(key.equals("B")){
+				response.getWriter().write(JsonUtils.statusResponse(0,boxService.boxQuery(id).get(0)));
+			}else if(key.equals("C")){
+				response.getWriter().write(JsonUtils.statusResponse(0,caseService.caseQuery(id).get(0)));
+			}else response.getWriter().write(JsonUtils.statusResponse(1,"请输入有效查询码"));
 		}
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.song.entity.Logistic;
 import com.song.entity.Product;
 import com.song.service.LogisticService;
@@ -52,7 +53,7 @@ public class LogisticController {
 			if(type.equals("id")) response.getWriter().write(JsonUtils.statusResponse(1, logisticService.queryByid(id)));
 			else if(type.equals("lid")){
 				if(!pid.equals("")){
-					String prefix = pid.substring(0, 1).toUpperCase();
+					String prefix = pid.substring(0, 1).toUpperCase(); 
 					if(prefix.equals("B")){//Box
 						response.getWriter().write(JsonUtils.statusResponse(1,logisticService.queryByLid(id,pid)));
 					}else if(prefix.equals("C")){//Case
@@ -92,19 +93,54 @@ public class LogisticController {
 	 * 物流信息新增
 	 * @param request
 	 * @param response
+	 * @throws IOException 
 	 */
-	@RequestMapping(value="/add")
-	public void add(HttpServletRequest request,HttpServletResponse response){
-		
+	@RequestMapping(value="/update")
+	public void add(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		try{
+			response.setCharacterEncoding("utf-8");
+			request.setCharacterEncoding("utf-8");
+			String addNew = request.getParameter("addNew");//区分update和add函数
+			Logistic logistic = new Logistic();
+			logistic.setId(Integer.parseInt(request.getParameter("id")));
+			logistic.setAddress(request.getParameter("address"));
+			logistic.setLogisticsID(request.getParameter("logisticsID"));
+			logistic.setRemark(request.getParameter("remark"));
+			logistic.setState(request.getParameter("state"));
+			logistic.setTime(request.getParameter("time"));
+			if(addNew!=null){
+				if(!Boolean.parseBoolean(addNew)){//update
+					if(logisticService.update(logistic)){
+						response.getWriter().write(JsonUtils.statusResponse(0, "OK"));
+					}else{
+						response.getWriter().write(JsonUtils.statusResponse(1, "更新失败"));
+					}
+				}else {//add
+					if(logisticService.add(logistic)){
+						response.getWriter().write(JsonUtils.statusResponse(0, "新增成功"));
+					}else{
+						response.getWriter().write(JsonUtils.statusResponse(1, "新增记录失败"));
+					}
+				}
+			}
+			else response.getWriter().write(JsonUtils.statusResponse(1, "系统异常"));
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			response.getWriter().write(JsonUtils.statusResponse(1, "后台错误"));
+		}
 	}
 	
 	/**
 	 * 物流信息删除
 	 * @param request
 	 * @param response
+	 * @throws IOException 
 	 */
 	@RequestMapping(value="/delete")
-	public void delete(HttpServletRequest request,HttpServletResponse response){
-		
+	public void delete(@RequestParam String id,HttpServletResponse response) throws IOException{
+		if(logisticService.delete(id))
+			response.getWriter().write(JsonUtils.statusResponse(0, "删除成功"));
+		else response.getWriter().write(JsonUtils.statusResponse(1, "删除失败"));
 	}
 }
