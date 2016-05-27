@@ -20,6 +20,7 @@ import com.song.service.BoxService;
 import com.song.service.CaseService;
 import com.song.service.ProductService;
 import com.song.util.JsonUtils;
+import com.song.util.LabelValidate;
 
 /**
  * 产品信息管理
@@ -71,7 +72,7 @@ public class ProductController {
 		String pb = request.getParameter("pb");
 		String pName = request.getParameter("pName");
 		String amount = request.getParameter("amount");
-		String price = request.getParameter("price");
+		String price = "".equals(request.getParameter("price"))?"0":request.getParameter("price");
 		String state = request.getParameter("state");
 		String targetAddr = request.getParameter("targetAddr");
 		String consumeAddr = request.getParameter("consumeAddr");
@@ -80,6 +81,8 @@ public class ProductController {
 		if(type.equals("boxID")){
 			String boxID = request.getParameter("boxID");
 			String storeID = request.getParameter("storeID");
+			
+			if(!LabelValidate.validate("B", boxID)) {response.getWriter().write(JsonUtils.statusResponse(1, "箱体编号应以B开头"));return;}
 			Box box = new Box();
 			box.setPd(pd);
 			box.setLogisticsId(logisticsId);
@@ -113,6 +116,8 @@ public class ProductController {
 		}else if(type.equals("caseID")){
 			String caseID = request.getParameter("caseID");
 			String boxID = request.getParameter("boxID");
+			
+			if(!LabelValidate.validate("C", caseID)) {response.getWriter().write(JsonUtils.statusResponse(1, "盒体编号应以C开头"));return;}
 			Case case1 = new Case();
 			case1.setPd(pd);
 			case1.setLogisticsId(logisticsId);
@@ -149,6 +154,9 @@ public class ProductController {
 			String pa = request.getParameter("pa");
 			String ranges = request.getParameter("range");
 			String material = request.getParameter("material");
+			
+			if(!LabelValidate.validate("P", id)) {response.getWriter().write(JsonUtils.statusResponse(1, "产品编号应以P开头"));return;}
+			
 			Product pro = new Product();
 			pro.setPd(pd);
 			pro.setLogisticsId(logisticsId);

@@ -17,6 +17,7 @@ import com.song.entity.Product;
 import com.song.service.LogisticService;
 import com.song.service.ProductService;
 import com.song.util.JsonUtils;
+import com.song.util.LabelValidate;
 /**
  * 物流信息响应页
  * @author Administrator
@@ -108,6 +109,9 @@ public class LogisticController {
 			logistic.setRemark(request.getParameter("remark"));
 			logistic.setState(request.getParameter("state"));
 			logistic.setTime(request.getParameter("time"));
+			
+			if(!LabelValidate.validate("L", logistic.getLogisticsID())) {response.getWriter().write(JsonUtils.statusResponse(1, "物流信息编号应以L开头"));return;}
+			
 			if(addNew!=null){
 				if(!Boolean.parseBoolean(addNew)){//update
 					if(logisticService.update(logistic)){

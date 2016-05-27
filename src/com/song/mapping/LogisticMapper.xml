@@ -37,7 +37,7 @@
   <insert id="add" parameterType="java.util.HashMap">
         INSERT INTO logistics
         (logisticsID,time,address,state,remark) VALUES
-        (#{logistic.logisticsID},#{logistic.time},,#{logistic.address},#{logistic.state},#{logistic.remark})
+        (#{logistic.logisticsID},#{logistic.time},#{logistic.address},#{logistic.state},#{logistic.remark})
    </insert>
    <update id="update" parameterType="java.util.HashMap">
    	update logistics

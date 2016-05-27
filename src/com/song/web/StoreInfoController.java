@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.song.entity.StoreInfo;
 import com.song.service.StoreInfoService;
 import com.song.util.JsonUtils;
+import com.song.util.LabelValidate;
 
 @Controller
 @RequestMapping(value="/storeInfo")
@@ -51,6 +52,8 @@ public class StoreInfoController {
 			stores.setState(request.getParameter("state"));
 			stores.setLocation(request.getParameter("location"));
 			stores.setRemark(request.getParameter("remark"));
+			if(!LabelValidate.validate("W", stores.getWarehouseID())) {response.getWriter().write(JsonUtils.statusResponse(1, "仓储信息编号应以W开头"));return;}
+			if(!LabelValidate.validate("S", stores.getStoreID())) {response.getWriter().write(JsonUtils.statusResponse(1, "仓储位置编号应以W开头"));return;}
 			if(addNew!=null){
 				if(!Boolean.parseBoolean(addNew)){//update
 					if(storeInfoService.update(stores)){

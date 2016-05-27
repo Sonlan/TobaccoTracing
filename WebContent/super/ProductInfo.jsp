@@ -116,7 +116,7 @@ $(document).ready(function(){
 				</tr> 
 				<tr class="proValue">   
 			       <td><textarea id="editAmountb"></textarea></td>
-			       <td><textarea id="editPriceb"></textarea></td>
+			       <td><textarea id="editPriceb" onkeyup="this.value=this.value.replace(/\D/g,'');"></textarea></td>
 			       <td><textarea id="editStateb"></textarea></td>
 			       <td><textarea id="editConsumeAddrb"></textarea></td>
 			       <td><textarea id="editConsumeTimeb"></textarea></td>
@@ -168,7 +168,7 @@ $(document).ready(function(){
 				 </tr>
 	        	<tr class="proValue">
 					<td><textarea id="editAmountc"></textarea></td>
-					<td><textarea id="editPricec"></textarea></td>
+					<td><textarea id="editPricec" onkeyup="this.value=this.value.replace(/\D/g,'')"></textarea></td>
 					<td><textarea id="editStatec"></textarea></td>
 					<td><textarea id="editConsumeAddrc"></textarea></td>
 			        <td><textarea id="editConsumeTimec"></textarea></td>
@@ -198,7 +198,7 @@ $(document).ready(function(){
 	    		<td><textarea id="editIDp" readonly="readonly"></textarea></td>
 	    		<td><textarea id="editpNamep"></textarea></td>
 	    		<td><textarea id="editPbp"></textarea></td>
-	    		<td><textarea id="editPricep"></textarea></td>
+	    		<td><textarea id="editPricep" onkeyup="this.value=this.value.replace(/\D/g,'')"></textarea></td>
 	    		<td><textarea id="editTargetAddrp"></textarea></td>
 	    		<!-- <td><textarea id="editPdp"></textarea></td> -->
 	    		<td> 
